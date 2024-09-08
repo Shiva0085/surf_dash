@@ -39,8 +39,9 @@ def load_s3_data():
     today = date.today()
     surfdate = today.strftime("%m-%d-%y")
     session = boto3.Session(
-    aws_access_key_id="",
-    aws_secret_access_key="",)
+        aws_access_key_id="",
+        aws_secret_access_key="",
+    )
     s3 = session.resource('s3')
     
     s3.meta.client.upload_file(dag_path+'/raw_data/'+ surfdate +'-surf-report.csv','wavestorm',surfdate +'-surf-report.csv')
@@ -57,8 +58,9 @@ def download_s3_data():
     last_added = [obj['Key'] for obj in sorted(objs, key=get_last_modified)][-1]
 
     session = boto3.Session(
-    aws_access_key_id="",
-    aws_secret_access_key="",)
+        aws_access_key_id="",
+        aws_secret_access_key="",
+    )
     s3 = session.resource('s3')
     
 
